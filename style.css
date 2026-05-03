@@ -546,39 +546,71 @@ section.active {
     50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
 }
 
-/* Mobile Tweaks */
+/* Mobile Tweaks - Full Cleanup */
 @media (max-width: 900px) {
-    .surprise-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+    section {
         padding: 1rem;
+    }
+
+    .surprise-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        padding: 1rem;
+        width: 100%;
     }
     
     .photo-frame {
-        max-width: 280px;
-        margin-bottom: 1rem;
+        max-width: 260px;
+        height: auto;
+        margin-bottom: 0.5rem;
+        transform: rotate(0deg) !important;
     }
 
     .content-wrapper {
-        gap: 1.5rem;
+        gap: 1rem;
+        width: 100%;
     }
 
     .glass-card {
-        padding: 1.5rem;
-        max-width: 95% !important; /* Ensure cards don't go off screen */
+        padding: 1.2rem;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        transform: rotate(0deg) !important;
+        align-self: center !important;
     }
 
-    .card-1, .card-2, .card-3 {
-        margin: 0 auto;
-        transform: rotate(0deg) !important; /* Flatten on mobile for better readability */
+    .card-2 {
+        background: rgba(255, 255, 255, 0.25) !important;
     }
 
-    .card-2 { background: rgba(255, 255, 255, 0.25) !important; }
+    .main-title {
+        font-size: 1.6rem !important;
+    }
+
+    .envelope-wrapper {
+        width: 220px;
+        height: 160px;
+    }
+
+    .title {
+        font-size: 2.2rem;
+    }
+
+    .final-card {
+        padding: 2rem 1rem;
+    }
 }
 
-@media (max-width: 480px) {
-    .title { font-size: 1.8rem; }
-    .envelope-wrapper { width: 220px; height: 160px; }
-    .letter p { font-size: 1.1rem; }
-    .romantic-text { font-size: 1.4rem; }
+@media (max-width: 400px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .envelope-wrapper {
+        width: 200px;
+        height: 140px;
+    }
 }

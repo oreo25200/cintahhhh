@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khusus Buat Kamu ✨</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="hearts-container"></div>
+
+    <!-- Page 1: Landing -->
+    <section id="landing-page" class="active">
+        <div class="landing-content">
+            <div class="envelope-wrapper">
+                <div class="envelope">
+                    <div class="back-side"></div>
+                    <div class="letter">
+                        <p>Special Gift For You...</p>
+                        <div class="letter-content">
+                            <span>Open Me ✨</span>
+                        </div>
+                    </div>
+                    <div class="front-side"></div>
+                    <div class="flap"></div>
+                </div>
+                <div class="heart-seal">❤️</div>
+            </div>
+            <h1 class="title">Hai Sayang! ✨</h1>
+            <p class="subtitle">Aku punya kejutan kecil buat kamu. Klik tombol di bawah ya!</p>
+            <button id="open-btn" class="main-btn">Buka Kejutannya 💖</button>
+        </div>
+    </section>
+
+    <!-- Page 2: Surprise -->
+    <section id="surprise-page">
+        <div class="surprise-container">
+            <div class="photo-frame">
+                <img src="foto/WhatsApp Image 2026-05-03 at 09.42.35.jpeg" alt="Kamu Cantik Banget" id="main-photo">
+                <div class="sparkles"></div>
+            </div>
+
+            <div class="content-wrapper">
+                <div class="glass-card message-card">
+                    <h2 class="romantic-text">Untuk Kamu yang Spesial...</h2>
+                    <p id="typing-text"></p>
+                </div>
+
+                <div class="glass-card music-card">
+                    <div class="music-info">
+                        <span class="music-icon">🎵</span>
+                        <div class="track-details">
+                            <span class="track-name">LANY - XXL</span>
+                            <span class="status-text">Now Playing...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-msg">
+                Love you always ❤️
+            </div>
+        </div>
+    </section>
+
+    <audio id="bg-music" loop>
+        <source src="musik/LANY - XXL (Official Lyric Video).mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

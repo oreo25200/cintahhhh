@@ -9,7 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const textParts = [
         "Kamu tidak akan bersaing dengan wanita manapun, aku tidak peduli apa kata orang lain tentang dirimu, apa yang kamu miliki...",
         "Kamu akan tetap menjadi wanita kesayangan ku, wanita yang selalu ku bahagiakan...",
-        "Yang selalu sempurna di mata ku. Love you sayang 🤍🤍🤍"
+        "Yang selalu sempurna di mata ku. Love you sayang 🤍🤍🤍",
+        "Aku cuma mau bilang… kalau selama ini aku pernah salah, pernah nyakitin, atau bikin kamu kecewa—aku minta maaf ya.",
+        "Aku sadar aku belum sempurna, masih banyak kurangnya. Tapi percayalah, aku selalu berusaha jadi lebih baik.",
+        "Kalau masih ada hal yang ganjel di hati kamu, semoga bisa dimaafkan. Aku hargai banget setiap kebaikan kamu selama ini 🤍"
     ];
 
     // Start floating elements
@@ -28,7 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
             next.classList.add('active');
             
             if (nextId === 'message-page') {
-                typeSequence(0);
+                typeSequence(0, 3);
+            } else if (nextId === 'apology-page') {
+                typeSequence(3, 6);
             }
         }, 500);
     };
@@ -73,12 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => sparkle.remove(), 1000);
     }
 
-    function typeSequence(index) {
-        if (index >= textParts.length) return;
+    function typeSequence(index, endIndex) {
+        if (index >= endIndex) return;
         
         const element = document.getElementById(`text-${index + 1}`);
+        if (!element) return;
+        
         let i = 0;
         const text = textParts[index];
+        element.innerHTML = '';
         
         function type() {
             if (i < text.length) {
@@ -86,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 i++;
                 setTimeout(type, 40);
             } else {
-                setTimeout(() => typeSequence(index + 1), 500);
+                setTimeout(() => typeSequence(index + 1, endIndex), 500);
             }
         }
         type();

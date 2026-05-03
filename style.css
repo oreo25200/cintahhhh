@@ -177,7 +177,7 @@ section.active {
     color: rgba(255,255,255,0.9);
 }
 
-.main-btn {
+.main-btn, .next-btn {
     padding: 1rem 2.5rem;
     font-size: 1.1rem;
     font-weight: 600;
@@ -188,11 +188,17 @@ section.active {
     cursor: pointer;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    margin-top: 1rem;
 }
 
-.main-btn:hover {
+.main-btn:hover, .next-btn:hover {
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.next-btn {
+    background: var(--accent-red);
+    color: #fff;
 }
 
 /* Surprise Page Styles Redesign */
@@ -238,8 +244,9 @@ section.active {
 .content-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
     z-index: 2;
+    width: 100%;
 }
 
 .glass-card {
@@ -392,21 +399,132 @@ section.active {
     100% { transform: scale(0) rotate(360deg); opacity: 0; }
 }
 
-/* Responsive */
+/* Scattered Card Variations */
+.card-1 { 
+    animation: fadeInLeft 1s ease-out var(--delay) both, float 6s ease-in-out infinite; 
+    transform: rotate(-2deg);
+    margin-right: auto;
+    max-width: 80%;
+}
+
+.card-2 { 
+    animation: fadeInRight 1s ease-out var(--delay) both, float 5s ease-in-out 1s infinite; 
+    transform: rotate(3deg);
+    margin-left: auto;
+    max-width: 80%;
+    margin-top: -20px;
+    background: rgba(255, 255, 255, 0.3) !important;
+}
+
+.card-3 { 
+    animation: fadeInUp 1s ease-out var(--delay) both, float 7s ease-in-out 0.5s infinite; 
+    transform: rotate(-1deg);
+    margin: 0 auto;
+    max-width: 90%;
+    margin-top: -10px;
+}
+
+@keyframes fadeInLeft {
+    from { opacity: 0; transform: translateX(-50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+/* Petal & Click Effects */
+.petal {
+    position: absolute;
+    pointer-events: none;
+    animation: petalFall linear forwards;
+    z-index: 0;
+}
+
+@keyframes petalFall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 1; }
+    100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+}
+
+.heart-pop {
+    position: fixed;
+    pointer-events: none;
+    font-size: 2rem;
+    animation: heartPopAnim 1s ease-out forwards;
+    z-index: 1000;
+}
+
+@keyframes heartPopAnim {
+    0% { transform: scale(0) translateY(0); opacity: 1; }
+    100% { transform: scale(2) translateY(-100px); opacity: 0; }
+}
+
+.next-btn {
+    padding: 0.8rem 2rem;
+    background: #ff4b2b;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.next-btn:hover { transform: scale(1.05); }
+
+.final-card {
+    text-align: center;
+    padding: 3rem;
+}
+
+.final-card .title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.floating-hearts-static {
+    font-size: 2.5rem;
+    margin-top: 2rem;
+    animation: heartBeat 1.5s infinite;
+}
+
+/* Mobile Tweaks */
 @media (max-width: 900px) {
     .surprise-container {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 3rem;
+        padding: 1rem;
     }
     
     .photo-frame {
-        max-width: 300px;
-        transform: rotate(-3deg);
+        max-width: 280px;
+        margin-bottom: 1rem;
     }
+
+    .content-wrapper {
+        gap: 1.5rem;
+    }
+
+    .glass-card {
+        padding: 1.5rem;
+        max-width: 95% !important; /* Ensure cards don't go off screen */
+    }
+
+    .card-1, .card-2, .card-3 {
+        margin: 0 auto;
+        transform: rotate(0deg) !important; /* Flatten on mobile for better readability */
+    }
+
+    .card-2 { background: rgba(255, 255, 255, 0.25) !important; }
 }
 
-@media (max-width: 600px) {
-    .title { font-size: 2.5rem; }
-    .romantic-text { font-size: 1.8rem; }
-    .glass-card { padding: 1.5rem; }
+@media (max-width: 480px) {
+    .title { font-size: 1.8rem; }
+    .envelope-wrapper { width: 220px; height: 160px; }
+    .letter p { font-size: 1.1rem; }
+    .romantic-text { font-size: 1.4rem; }
 }

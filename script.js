@@ -6,75 +6,132 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingText = document.getElementById('typing-text');
     const heartsContainer = document.getElementById('hearts-container');
 
-    const message = "Kamu tidak akan bersaing dengan wanita manapun, aku tidak peduli apa kata orang lain tentang dirimu, apa yang kamu miliki, kamu akan tetap menjadi wanita kesayangan ku, wanita yang selalu ku bahagiakan, yang selalu sempurna di mata ku. Love you sayang 🤍🤍🤍";
+    const textParts = [
+        "Kamu tidak akan bersaing dengan wanita manapun, aku tidak peduli apa kata orang lain tentang dirimu, apa yang kamu miliki...",
+        "Kamu akan tetap menjadi wanita kesayangan ku, wanita yang selalu ku bahagiakan...",
+        "Yang selalu sempurna di mata ku. Love you sayang 🤍🤍🤍"
+    ];
 
-    // Start floating hearts and sparkles
-    setInterval(createHeart, 300);
-    setInterval(createSparkle, 150);
+    // Start floating elements
+    setInterval(createHeart, 400);
+    setInterval(createSparkle, 200);
+    setInterval(createPetal, 1000);
+
+    window.nextPage = function(currentId, nextId) {
+        const current = document.getElementById(currentId);
+        const next = document.getElementById(nextId);
+        
+        current.classList.remove('active');
+        setTimeout(() => {
+            current.style.display = 'none';
+            next.style.display = 'flex';
+            next.classList.add('active');
+            
+            if (nextId === 'message-page') {
+                typeSequence(0);
+            }
+        }, 500);
+    };
 
     openBtn.addEventListener('click', () => {
-        // Transition animation
         landingPage.classList.remove('active');
         
         setTimeout(() => {
             landingPage.style.display = 'none';
-            surprisePage.style.display = 'flex';
-            surprisePage.classList.add('active');
+            document.getElementById('gallery-page').style.display = 'flex';
+            document.getElementById('gallery-page').classList.add('active');
             
-            // Play music
-            bgMusic.play().catch(error => {
-                console.log("Autoplay prevented:", error);
-            });
-
-            // Start typing effect
-            startTyping(message);
+            bgMusic.play().catch(console.error);
         }, 500);
     });
 
+    // Interactive effects
+    document.addEventListener('mousemove', (e) => {
+        if (Math.random() > 0.8) spawnSparkle(e.clientX, e.clientY);
+    });
+
+    document.addEventListener('touchmove', (e) => {
+        if (Math.random() > 0.8) {
+            spawnSparkle(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    }, { passive: true });
+
+    document.addEventListener('click', (e) => {
+        if (landingPage.style.display === 'none') {
+            spawnHeart(e.clientX, e.clientY);
+        }
+    });
+
+    function spawnSparkle(x, y) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        sparkle.innerHTML = '✨';
+        sparkle.style.left = x + 'px';
+        sparkle.style.top = y + 'px';
+        sparkle.style.fontSize = '10px';
+        heartsContainer.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
+    }
+
+    function typeSequence(index) {
+        if (index >= textParts.length) return;
+        
+        const element = document.getElementById(`text-${index + 1}`);
+        let i = 0;
+        const text = textParts[index];
+        
+        function type() {
+            if (i < text.length) {
+                element.innerHTML += text.charAt(i);
+                i++;
+                setTimeout(type, 40);
+            } else {
+                setTimeout(() => typeSequence(index + 1), 500);
+            }
+        }
+        type();
+    }
+
     function createHeart() {
         const heart = document.createElement('div');
-        heart.classList.add('heart');
+        heart.className = 'heart';
         heart.innerHTML = '❤️';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.animationDuration = Math.random() * 3 + 2 + 's';
-        heart.style.opacity = Math.random() * 0.5 + 0.3;
-        heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-        
+        heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+        heart.style.fontSize = Math.random() * 15 + 10 + 'px';
         heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 6000);
+    }
 
-        setTimeout(() => {
-            heart.remove();
-        }, 5000);
+    function spawnHeart(x, y) {
+        const heart = document.createElement('div');
+        heart.className = 'heart-pop';
+        heart.innerHTML = '❤️';
+        heart.style.left = x + 'px';
+        heart.style.top = y + 'px';
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 1000);
     }
 
     function createSparkle() {
         const sparkle = document.createElement('div');
-        sparkle.classList.add('sparkle');
+        sparkle.className = 'sparkle';
         sparkle.innerHTML = '✨';
         sparkle.style.left = Math.random() * 100 + 'vw';
         sparkle.style.top = Math.random() * 100 + 'vh';
         sparkle.style.animationDuration = Math.random() * 2 + 1 + 's';
-        sparkle.style.fontSize = Math.random() * 15 + 5 + 'px';
-        
         heartsContainer.appendChild(sparkle);
-
-        setTimeout(() => {
-            sparkle.remove();
-        }, 2000);
+        setTimeout(() => sparkle.remove(), 2000);
     }
 
-    function startTyping(text) {
-        let i = 0;
-        typingText.innerHTML = '';
-        
-        function type() {
-            if (i < text.length) {
-                typingText.innerHTML += text.charAt(i);
-                i++;
-                setTimeout(type, 50);
-            }
-        }
-        
-        type();
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.innerHTML = '🌸';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+        petal.style.fontSize = Math.random() * 10 + 10 + 'px';
+        heartsContainer.appendChild(petal);
+        setTimeout(() => petal.remove(), 10000);
     }
 });

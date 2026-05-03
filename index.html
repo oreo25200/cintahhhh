@@ -35,34 +35,54 @@
         </div>
     </section>
 
-    <!-- Page 2: Surprise -->
-    <section id="surprise-page">
+    <!-- Page 2: Gallery -->
+    <section id="gallery-page">
         <div class="surprise-container">
             <div class="photo-frame">
                 <img src="foto/WhatsApp Image 2026-05-03 at 09.42.35.jpeg" alt="Kamu Cantik Banget" id="main-photo">
                 <div class="sparkles"></div>
             </div>
-
-            <div class="content-wrapper">
-                <div class="glass-card message-card">
-                    <h2 class="romantic-text">Untuk Kamu yang Spesial...</h2>
-                    <p id="typing-text"></p>
-                </div>
-
-                <div class="glass-card music-card">
-                    <div class="music-info">
-                        <span class="music-icon">🎵</span>
-                        <div class="track-details">
-                            <span class="track-name">LANY - XXL</span>
-                            <span class="status-text">Now Playing...</span>
-                        </div>
+            <div class="glass-card music-card">
+                <div class="music-info">
+                    <span class="music-icon">🎵</span>
+                    <div class="track-details">
+                        <span class="track-name">LANY - XXL</span>
+                        <span class="status-text">Playing for you...</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="footer-msg">
-                Love you always ❤️
+            <button class="next-btn" onclick="nextPage('gallery-page', 'message-page')">Lanjut Sayang? ❤️</button>
+        </div>
+    </section>
+
+    <!-- Page 3: Messages -->
+    <section id="message-page">
+        <div class="surprise-container">
+            <div class="content-wrapper">
+                <div class="glass-card card-1" style="--delay: 0.2s">
+                    <h2 class="romantic-text">Untuk Sayangku...</h2>
+                    <p id="text-1"></p>
+                </div>
+                <div class="glass-card card-2" style="--delay: 1s">
+                    <p id="text-2"></p>
+                </div>
+                <div class="glass-card card-3" style="--delay: 2s">
+                    <p id="text-3"></p>
+                </div>
             </div>
+            <button class="next-btn" onclick="nextPage('message-page', 'closing-page')">Terakhir... ✨</button>
+        </div>
+    </section>
+
+    <!-- Page 4: Closing -->
+    <section id="closing-page">
+        <div class="surprise-container">
+            <div class="glass-card final-card">
+                <h1 class="title">Web spesial yang pernah dibuat untuk kamu sayang ❤️</h1>
+                <p class="subtitle">Semoga kamu selalu bahagia bareng aku ya.</p>
+                <div class="floating-hearts-static">💖💖💖</div>
+            </div>
+            <div class="footer-msg">Love you always ❤️</div>
         </div>
     </section>
 

@@ -497,21 +497,53 @@ section.active {
 
 .next-btn:hover { transform: scale(1.05); }
 
+.final-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 50vh;
+}
+
 .final-card {
     text-align: center;
     padding: 3rem;
+    max-width: 600px !important;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
-.final-card .title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.4;
+.main-title {
+    font-size: 2.2rem !important;
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    color: #fff;
+    font-family: 'Dancing Script', cursive;
 }
 
-.floating-hearts-static {
-    font-size: 2.5rem;
-    margin-top: 2rem;
-    animation: heartBeat 1.5s infinite;
+.love-burst-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: #fff;
+    color: var(--accent-red);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.love-burst-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.8; }
 }
 
 /* Mobile Tweaks */

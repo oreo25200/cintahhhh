@@ -15,10 +15,15 @@ document.addEventListener('DOMContentLoaded', () => {
         "Kalau masih ada hal yang ganjel di hati kamu, semoga bisa dimaafkan. Aku hargai banget setiap kebaikan kamu selama ini 🤍"
     ];
 
-    // Start floating elements
-    setInterval(createHeart, 400);
-    setInterval(createSparkle, 200);
-    setInterval(createPetal, 1000);
+    // Start only minimal floating hearts
+    setInterval(createHeart, 1000);
+
+    // Interactive effects (Only Click)
+    document.addEventListener('click', (e) => {
+        if (landingPage.style.display === 'none') {
+            spawnHeart(e.clientX, e.clientY);
+        }
+    });
 
     window.nextPage = function(currentId, nextId) {
         const current = document.getElementById(currentId);
@@ -50,22 +55,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 500);
     });
 
-    // Interactive effects
-    document.addEventListener('mousemove', (e) => {
-        if (Math.random() > 0.8) spawnSparkle(e.clientX, e.clientY);
-    });
-
-    document.addEventListener('touchmove', (e) => {
-        if (Math.random() > 0.8) {
-            spawnSparkle(e.touches[0].clientX, e.touches[0].clientY);
-        }
-    }, { passive: true });
-
-    document.addEventListener('click', (e) => {
-        if (landingPage.style.display === 'none') {
-            spawnHeart(e.clientX, e.clientY);
-        }
-    });
+    // Final Love Burst Effect
+    const finalLoveBtn = document.getElementById('final-love-btn');
+    if (finalLoveBtn) {
+        finalLoveBtn.addEventListener('click', () => {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const x = window.innerWidth / 2 + (Math.random() - 0.5) * 200;
+                    const y = window.innerHeight / 2 + (Math.random() - 0.5) * 200;
+                    spawnHeart(x, y);
+                }, i * 50);
+            }
+        });
+    }
 
     function spawnSparkle(x, y) {
         const sparkle = document.createElement('div');
